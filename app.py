@@ -2,6 +2,10 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def inicio():
+    return "Bienvenido a la API", 200
+
 @app.route('/check', methods=['GET'])
 def check():
     return "OK", 200
