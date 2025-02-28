@@ -1,23 +1,24 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const port = 5000;
 
-app.get("/", (req, res) => {
-  res.status(200).send("OK");
+// Endpoint 1: Verificación de estado
+app.get('/check/ok', (req, res) => {
+  res.status(200).send("200"); // Retorna código 200 OK
 });
 
-app.get("/check", (req, res) => {
-  res.status(200).send("OK");
-});
-
-app.get("/info", (req, res) => {
-  res.json({
+// Endpoint 2: Retorna un objeto JSON
+app.get('/', (req, res) => {
+  const data = {
     Instancia: "Maquina 1 - API 1",
     Curso: "Seminario de Sistemas 1 A",
     Grupo: "Grupo 13"
-  });
+  };
+  res.json(data); // Retorna el objeto JSON
 });
 
-app.listen(port, () => {
-  console.log(`API 1 corriendo en http://localhost:${port}`);
+// Servidor escuchando en el puerto 3000
+const PORT = 3000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
