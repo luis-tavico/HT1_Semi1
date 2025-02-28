@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const port = 5000;
 
+app.get("/", (req, res) => {
+  res.json({ message: "Bienvenido a la API" });
+});
+
 app.get("/check", (req, res) => {
   res.status(200).send("OK");
 });
