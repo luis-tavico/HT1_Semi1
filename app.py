@@ -1,22 +1,25 @@
+from asgiref.wsgi import WsgiToAsgi
 from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
-def inicio():
-    return "OK", 200
-    
-@app.route('/check', methods=['GET'])
+# Endpoint 1: Verificación de estado
+@app.route('/check/ok', methods=['GET'])
 def check():
-    return "OK", 200
+    return '200'  # Retorna un código 200 OK
 
-@app.route('/info', methods=['GET'])
-def info():
-    return jsonify({
+# Endpoint 2: Retorna un objeto JSON
+@app.route('/', methods=['GET'])
+def home():
+    data = {
         "Instancia": "Maquina 2 - API 2",
         "Curso": "Seminario de Sistemas 1 A",
         "Grupo": "Grupo 13"
-    })
+    }
+    return jsonify(data)
+
+# Adaptar Flask (WSGI) a ASGI
+asgi_app = WsgiToAsgi(app)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=3000)
